@@ -6,7 +6,7 @@ MAINTAINER  "Jven"
 LABEL   Description="Snapcast client"
 
 ENV HOST 192.168.0.2
-COPY entrypoint.sh /etc/entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 RUN set -x && \
     apk upgrade --update && \

@@ -1,7 +1,7 @@
 #
-# From alpine
+# From ubuntu
 #
-FROM    alpine:latest
+FROM    ubuntu:20.4
 MAINTAINER  "Jven"
 LABEL   Description="Snapcast client"
 
@@ -9,9 +9,8 @@ ENV HOST 192.168.0.2
 COPY entrypoint.sh /entrypoint.sh
 
 RUN set -x && \
-    apk upgrade --update && \
-    apk add --no-cache snapcast-client --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
-	apk add --no-cache bluez dbus && \
+    apt update -y && \
+	apt install -y snapclient && \
 	chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

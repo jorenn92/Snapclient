@@ -13,4 +13,4 @@ RUN set -x && \
     apk add --no-cache snapcast-client --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community && \
 	apk add --no-cache bluez dbus
 
-ENTRYPOINT ["/bin/ash","-c","entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -9,9 +9,9 @@ ENV HOST 192.168.0.2
 COPY entrypoint.sh /entrypoint.sh
 
 RUN set -x && \
-    apt update -y && \
-	apt install -y snapclient git automake build-essential libtool pkg-config python-docutils alsa && \
-	apt install -y libasound2-dev libbluetooth-dev libdbus-1-dev libglib2.0-dev libsbc-dev libfdk-aac-dev && \
+    apt-get update -y && \
+	apt-get install -y snapclient git automake build-essential libtool pkg-config python-docutils alsa && \
+	apt-get install -y libasound2-dev libbluetooth-dev libdbus-1-dev libglib2.0-dev libsbc-dev libfdk-aac-dev && \
 	mkdir /opt/bluez-alsa && \
 	cd /opt/bluez-alsa && \
 	git clone https://github.com/Arkq/bluez-alsa.git && \
@@ -22,8 +22,8 @@ RUN set -x && \
 	../configure --enable-aac --enable-ofono --enable-debug && \
 	make && \
 	make install && \
-	apt remove git automake build-essential libtool pkg-config python-docutils alsa && \
-	apt autoremove -y && \
+	apt-get remove git automake build-essential libtool pkg-config python-docutils alsa && \
+	apt-get autoremove -y && \
 	chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

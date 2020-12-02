@@ -1,7 +1,7 @@
 #
 # From ubuntu
 #
-FROM    ubuntu:20.4
+FROM ubuntu:20.04
 MAINTAINER  "Jven"
 LABEL   Description="Snapcast client"
 

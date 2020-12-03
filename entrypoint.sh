@@ -2,6 +2,8 @@
 BLUETOOTH=$(cat /config/bluetooth.config | grep -i 'bluetooth.enabled' | cut -d= -f2)
 BTDEVICE=$(cat /config/bluetooth.config | grep -i 'mac-address' | cut -d= -f2)
 
+/usr/sbin/rsyslogd > /dev/null 2>&1 &
+	
 if [[ $BLUETOOTH == "true" ]]; then
 
 	if [[ -e "/run/dbus/pid" ]]; then

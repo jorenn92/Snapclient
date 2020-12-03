@@ -6,7 +6,9 @@ MAINTAINER  "Jven"
 LABEL   Description="Snapcast client"
 
 ENV HOST 192.168.0.2
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh 	/entrypoint.sh
+COPY scripts 		/scripts
+COPY config 		/config
 
 RUN set -x && \
     apt-get update -y && \
@@ -25,6 +27,6 @@ RUN set -x && \
 	DEBIAN_FRONTEND=noninteractive apt-get remove -y git automake build-essential libtool pkg-config python-docutils && \
 	DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y libfdk-aac1 libgio-cil bluez && \
-	chmod +x /entrypoint.sh
+	chmod +x /entrypoint.sh /scripts/*
 
 ENTRYPOINT ["/entrypoint.sh"]

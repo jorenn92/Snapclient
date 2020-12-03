@@ -1,0 +1,19 @@
+#!/bin/bash
+MAC=$(cat /config/bluetooth.config | grep -i 'mac-address' | cut -d= -f2)
+echo "pcm.bt-device { 
+        type plug 
+        slave.pcm { 
+                type bluealsa 
+                device "$MAC" 
+                profile "a2dp" 
+                delay 1000 
+        } 
+}" > ~/.asoundsrc  
+bluetoothctl << EOF
+power on
+EOF
+yes | bluetoothctl pair $MAC
+bluetoothctl trust $MAC
+bluetoothctl connect $MAC
+echo "connection successfull"
+touch /config/setupdone

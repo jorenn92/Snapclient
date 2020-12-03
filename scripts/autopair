@@ -1,0 +1,4 @@
+#!/bin/bash
+MAC=$(cat /config/bluetooth.config | grep -i 'mac-address' | cut -d= -f2)
+echo "Attempting connection to $MAC"
+bluetoothctl connect $MAC

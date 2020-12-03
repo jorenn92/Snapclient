@@ -15,5 +15,5 @@ EOF
 yes | bluetoothctl pair $MAC
 bluetoothctl trust $MAC
 bluetoothctl connect $MAC
-echo "connection successfull"
+echo "connection done.. If the device isn't available set the device in pairing mode and re-create the container"
 touch /config/setupdone

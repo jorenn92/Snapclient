@@ -9,9 +9,12 @@ echo "pcm.bt-device {
                 delay 1000 
         } 
 }" > ~/.asoundsrc  
-bluetoothctl << EOF
-power on
-EOF
+bluetoothctl power on
+echo "scanning devices for 5 seconds.."
+bluetoothctl scan on &
+SCANPID=$!
+sleep 5
+kill -INT $SCANPID 
 yes | bluetoothctl pair $MAC
 bluetoothctl trust $MAC
 bluetoothctl connect $MAC

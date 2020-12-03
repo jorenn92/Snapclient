@@ -21,12 +21,15 @@ RUN set -x && \
 	autoreconf --install --force && \ 
 	mkdir build && \
 	cd build && \
-	../configure --enable-aac --enable-ofono --enable-debug && \
+	../configure --enable-aac --enable-msbc --enable-ofono --enable-debug && \
 	make && \
 	make install && \
 	DEBIAN_FRONTEND=noninteractive apt-get remove -y git automake build-essential libtool pkg-config python-docutils && \
+	DEBIAN_FRONTEND=noninteractive apt-get remove -y libasound2-dev libbluetooth-dev libdbus-1-dev libglib2.0-dev libsbc-dev libfdk-aac-dev && \
 	DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
+	DEBIAN_FRONTEND=noninteractive apt-get clean -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y libfdk-aac1 libgio-cil bluez && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y dbus libfdk-aac1 libasound2 libbluetooth3 libbsd0 libglib2.0-0 libsbc1 && \
 	chmod +x /entrypoint.sh /scripts/*
 
 ENTRYPOINT ["/entrypoint.sh"]

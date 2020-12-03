@@ -1,14 +1,7 @@
 #!/bin/bash
 MAC=$(cat /config/bluetooth.config | grep -i 'mac-address' | cut -d= -f2)
-echo "pcm.bt-device { 
-        type plug 
-        slave.pcm { 
-                type bluealsa 
-                device "$MAC" 
-                profile "a2dp" 
-                delay 1000 
-        } 
-}" > ~/.asoundsrc  
+
+echo "defaults.bluealsa.device \"$MAC\"" >> /etc/alsa/conf.d/20-bluealsa.conf
 bluetoothctl power on
 echo "scanning devices for 5 seconds.."
 bluetoothctl scan on &
@@ -18,5 +11,5 @@ kill -INT $SCANPID
 yes | bluetoothctl pair $MAC
 bluetoothctl trust $MAC
 bluetoothctl connect $MAC
-echo "connection done.. If the device isn't available set the device in pairing mode and re-create the container"
+echo "connection done.. If the device isn't available remove the setupdone file if persistent & set the device in pairing mode and re-create the container"
 touch /config/setupdone

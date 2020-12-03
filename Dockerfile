@@ -29,7 +29,7 @@ RUN set -x && \
 	DEBIAN_FRONTEND=noninteractive apt-get autoremove -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get clean -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y libfdk-aac1 libgio-cil bluez && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y dbus libfdk-aac1 libasound2 libbluetooth3 libbsd0 libglib2.0-0 libsbc1 && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y dbus libfdk-aac1 libasound2 libbluetooth3 libbsd0 libglib2.0-0 libsbc1 rsyslogd && \
 	chmod +x /entrypoint.sh /scripts/*
 
 ENTRYPOINT ["/entrypoint.sh"]

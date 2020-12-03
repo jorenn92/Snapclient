@@ -7,9 +7,9 @@ echo "scanning devices for 5 seconds.."
 bluetoothctl scan on &
 SCANPID=$!
 sleep 5
-kill -INT $SCANPID 
-yes | bluetoothctl pair $MAC
+kill -INT $SCANPID
 bluetoothctl trust $MAC
+yes | bluetoothctl pair $MAC
 bluetoothctl connect $MAC
 echo "connection done.. If the device isn't available remove the setupdone file if persistent & set the device in pairing mode and re-create the container"
 touch /config/setupdone

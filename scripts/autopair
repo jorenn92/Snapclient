@@ -1,3 +1,9 @@
 #!/bin/bash
 MAC=$(cat /config/bluetooth.config | grep -i 'mac-address' | cut -d= -f2)
+
+if [[ $(cat /etc/alsa/conf.d/20-bluealsa.conf | grep -i 'defaults.bluealsa.device ') == "" ]]; then
+	echo "defaults.bluealsa.device \"$MAC\"" >> /etc/alsa/conf.d/20-bluealsa.conf
+fi
+bluetoothctl power on
+bluetoothctl trust $MAC
 bluetoothctl connect $MAC

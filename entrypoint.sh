@@ -17,4 +17,4 @@ else
 fi
 
 echo "All done starting snapclient.."
-snapclient -h $HOST &
+snapclient -h $HOST

@@ -30,6 +30,7 @@ RUN set -x && \
 	DEBIAN_FRONTEND=noninteractive apt-get clean -y && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y libfdk-aac1 libgio-cil bluez && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y dbus libfdk-aac1 libasound2 libbluetooth3 libbsd0 libglib2.0-0 libsbc1 rsyslog && \
-	chmod +x /entrypoint.sh /scripts/*
+	chmod +x /entrypoint.sh /scripts/* && \
+	echo "@reboot hciattach /dev/ttyAMA0 bcm43xx 921600 -" | crontab -
 
 ENTRYPOINT ["/entrypoint.sh"]
